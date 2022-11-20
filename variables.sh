@@ -5,8 +5,8 @@
 # as succeeding in spite of errors or failures.
 set -eo pipefail
 
-export ABBREV='min-rvm'
-export ABBREV_UPSTREAM='min-stage2'
+export ABBREV='rvm-general'
+export ABBREV_UPSTREAM='min-rvm'
 export OWNER='rubyonracetracks'
 export DISTRO='debian'
 export SUITE='bullseye'
