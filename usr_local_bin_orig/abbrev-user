@@ -6,6 +6,14 @@
 set -eo pipefail
 
 ABBREV='<ABBREV>'
+STR_RUBY_VERSIONS=''
+STR_BUNDLER_VERSIONS=''
+STR_RAILS_VERSIONS=''
+STR_PG_VERSIONS=''
+STR_NOKOGIRI_VERSIONS=''
+STR_FFI_VERSIONS=''
+
+source ~/.rvm/scripts/rvm # Activate RVM
 
 # BEGIN: activate NVM
 export NVM_DIR="/home/`whoami`/.nvm"
@@ -18,35 +26,29 @@ echo '##########################'
 echo "BEGIN $ABBREV-user actions"
 echo '##########################'
 
-echo '------------------------------------------------------------------------------------------------------------------------------------'
-echo 'gpg --keyserver hkp://keys.openpgp.org --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB'
-gpg --keyserver hkp://keys.openpgp.org --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+echo '----------------------------------------------------------------------------------------------'
+echo 'wget https://gitlab.com/rubyonracetracks/docker-common/raw/main/rvm-install-rubies.sh'
+wget https://gitlab.com/rubyonracetracks/docker-common/raw/main/rvm-install-rubies.sh
 
-echo '+++++++++++++++++++++'
-echo 'BEGIN: installing RVM'
-echo '+++++++++++++++++++++'
+echo '------------------------------'
+echo 'Updating rvm-install-rubies.sh'
+sed -i.bak "s|<STR_RUBY_VERSIONS>|$STR_RUBY_VERSIONS|g" rvm-install-rubies.sh
+sed -i.bak "s|<STR_BUNDLER_VERSIONS>|$STR_BUNDLER_VERSIONS|g" rvm-install-rubies.sh
+sed -i.bak "s|<STR_RAILS_VERSIONS>|$STR_RAILS_VERSIONS|g" rvm-install-rubies.sh
+sed -i.bak "s|<STR_PG_VERSIONS>|$STR_PG_VERSIONS|g" rvm-install-rubies.sh
+sed -i.bak "s|<STR_NOKOGIRI_VERSIONS>|$STR_NOKOGIRI_VERSIONS|g" rvm-install-rubies.sh
+sed -i.bak "s|<STR_FFI_VERSIONS>|$STR_FFI_VERSIONS|g" rvm-install-rubies.sh
+rm rvm-install-rubies.sh.bak
 
-echo '------------------------------------'
-echo '\curl -sSL https://get.rvm.io | bash'
-\curl -sSL https://get.rvm.io | bash
+echo '---------------------------------------------------------------'
+echo 'sudo mv rvm-install-rubies.sh /usr/local/bin/rvm-install-rubies'
+sudo mv rvm-install-rubies.sh /usr/local/bin/rvm-install-rubies
 
-echo '++++++++++++++++++++++++'
-echo 'FINISHED: installing RVM'
-echo '++++++++++++++++++++++++'
+echo '-----------------------------------------------'
+echo 'sudo chmod +x /usr/local/bin/rvm-install-rubies'
+sudo chmod +x /usr/local/bin/rvm-install-rubies
 
-source ~/.rvm/scripts/rvm # Activate RVM
-
-# BEGIN: activate RVM upon startup
-echo 'source ~/.rvm/scripts/rvm' >> /home/`whoami`/.bashrc
-# END: activate rbenv upon startup
-
-echo '--------------'
-echo 'rvm list known'
-rvm list known
-
-echo '-------------'
-echo 'rvm --version'
-rvm --version
+/usr/local/bin/rvm-install-rubies
 
 echo '#############################'
 echo "FINISHED $ABBREV-user actions"

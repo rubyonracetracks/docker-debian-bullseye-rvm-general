@@ -20,13 +20,45 @@ echo '###########################'
 echo "BEGIN $ABBREV sanity checks"
 echo '###########################'
 
-echo '-------------'
-echo 'rvm --version'
-rvm --version
-
 echo '--------'
 echo 'rvm list'
 rvm list
+
+echo '-------'
+echo 'ruby -v'
+ruby -v
+
+echo '--------'
+echo 'rails -v'
+rails -v
+
+echo '------------------'
+echo 'gem list "^rails$"'
+gem list "^rails$"
+
+echo '-----------------'
+echo 'bundler --version'
+bundler --version
+
+echo '--------------------'
+echo 'gem list "^bundler$"'
+gem list "^bundler$"
+
+echo '---------------------'
+echo 'gem list "^nokogiri$"'
+gem list "^nokogiri$"
+
+echo '---------------'
+echo 'gem list "^pg$"'
+gem list "^pg$"
+
+echo '----------------'
+echo 'gem list "^ffi$"'
+gem list "^ffi$"
+
+echo '------------------------'
+echo 'gem list "^mailcatcher$"'
+gem list "^mailcatcher$"
 
 echo '##############################'
 echo "FINISHED $ABBREV sanity checks"
