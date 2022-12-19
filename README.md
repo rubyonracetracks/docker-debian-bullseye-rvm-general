@@ -23,4 +23,4 @@ Specific versions of Ruby
 * This Docker image is used for Rails Neutrino and for making Ruby gems.
 
 ## More Information
-General information common to all Docker Debian build repositories is in the [FAQ](https://gitlab.com/rubyonracetracks/docker-common/blob/master/FAQ.md).
+General information common to all Docker Debian build repositories is in the [FAQ](https://github.com/rubyonracetracks/docker-common/blob/main/FAQ.md).
