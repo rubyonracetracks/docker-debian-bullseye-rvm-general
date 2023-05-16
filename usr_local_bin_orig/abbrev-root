@@ -29,7 +29,8 @@ echo '##########################'
 
 echo "/usr/local/bin/check-$ABBREV" >> /usr/local/bin/check
 
-echo 'Nothing to do as root'
+echo 'sudo ln -s /bin/mkdir /usr/bin/mkdir'
+sudo ln -s /bin/mkdir /usr/bin/mkdir
 
 echo '#############################'
 echo "FINISHED $ABBREV-root actions"
